@@ -57,3 +57,39 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Production Docker Deployment (Coolify)
+
+This project includes a production-ready Docker setup for Coolify:
+
+- `Dockerfile` (multi-stage: Composer + Vite build + PHP-FPM/Nginx runtime)
+- `docker/entrypoint.sh` (optional migrations + cache warmup)
+- `docker/nginx/default.conf` (web server config)
+- `docker/supervisord.conf` (runs web, queue worker, and scheduler)
+
+### 1. Deploy in Coolify
+
+1. Create a **new Application** from your Git repository.
+2. Select **Dockerfile** build pack.
+3. Set **Port** to `8080`.
+4. Deploy.
+
+### 2. Required environment variables
+
+Set at least:
+
+- `APP_ENV=production`
+- `APP_DEBUG=false`
+- `APP_URL=https://your-domain`
+- `APP_KEY=base64:...`
+- Database variables (`DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`)
+- SMS variables (`EGOSMS_USERNAME`, `EGOSMS_API_KEY`, optionally `EGOSMS_SENDER_ID`)
+
+Optional:
+
+- `RUN_MIGRATIONS=true` to run `php artisan migrate --force` on container start.
+
+### 3. Notes
+
+- Queue worker and Laravel scheduler are started automatically via Supervisor.
+- Vite assets are built during image build and served from `public/build`.
