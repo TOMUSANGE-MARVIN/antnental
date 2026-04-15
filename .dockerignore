@@ -8,8 +8,8 @@ storage/framework/sessions/*
 storage/framework/views/*
 .env
 .env.*
+!.env.example
 docker-compose.yml
 docker-compose.yaml
 npm-debug.log
 yarn-error.log
-
