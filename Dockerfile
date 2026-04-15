@@ -39,6 +39,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=composer:2.8 /usr/bin/composer /usr/bin/composer
 
 COPY . .
+RUN [ -f .env ] || cp .env.example .env
 COPY --from=vendor /app/vendor ./vendor
 COPY --from=frontend /app/public/build ./public/build
 
