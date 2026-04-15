@@ -20,20 +20,21 @@ COPY public ./public
 COPY vite.config.js ./
 RUN npm run build
 
-FROM php:8.2-fpm-alpine AS app
+FROM php:8.2-fpm-bookworm AS app
 
 WORKDIR /var/www/html
 
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     nginx \
     supervisor \
+    ca-certificates \
     curl \
     libzip-dev \
-    icu-dev \
-    oniguruma-dev \
-    sqlite-dev \
+    libicu-dev \
+    libonig-dev \
+    libsqlite3-dev \
     && docker-php-ext-install pdo_mysql pdo_sqlite bcmath intl mbstring zip opcache pcntl \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:2.8 /usr/bin/composer /usr/bin/composer
 
@@ -41,7 +42,7 @@ COPY . .
 COPY --from=vendor /app/vendor ./vendor
 COPY --from=frontend /app/public/build ./public/build
 
-COPY docker/nginx/default.conf /etc/nginx/http.d/default.conf
+COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY docker/supervisord.conf /etc/supervisord.conf
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 
@@ -53,4 +54,3 @@ EXPOSE 8080
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
-
