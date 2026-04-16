@@ -13,7 +13,8 @@
             --blue-pale:    #eff6ff;
         }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { overflow-x: hidden; }
 
         /* ── Navbar ── */
         #navbar { transition: background .3s, box-shadow .3s, padding .3s; }
@@ -73,22 +74,22 @@
         .nav-link:hover::after { width:100%; }
     </style>
 </head>
-<body class="font-sans antialiased text-gray-800 bg-white">
+<body class="font-sans antialiased text-gray-800 bg-white overflow-x-hidden">
 
 <!-- ══════════════════════════════════════════
      NAVBAR
 ══════════════════════════════════════════ -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm py-4 px-4">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 min-w-0">
 
         <!-- Logo -->
-        <a href="{{ route('landing') }}" class="flex items-center gap-2">
+        <a href="{{ route('landing') }}" class="flex items-center gap-2 min-w-0">
             <div class="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-400/40">
                 <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
                 </svg>
             </div>
-            <span class="text-xl font-extrabold text-blue-700" id="logo-text">MamaCare</span>
+            <span class="text-lg sm:text-xl font-extrabold text-blue-700 truncate" id="logo-text">MamaCare</span>
         </a>
 
         <!-- Nav links (desktop) -->
@@ -142,27 +143,27 @@
 <section class="relative min-h-screen flex items-center overflow-hidden bg-white">
 
     <!-- Subtle decorative circles -->
-    <div class="absolute top-20 right-0 w-[480px] h-[480px] rounded-full opacity-40" style="background:radial-gradient(circle,#dbeafe,transparent 70%);"></div>
-    <div class="absolute -bottom-20 -left-10 w-72 h-72 rounded-full opacity-30" style="background:radial-gradient(circle,#eff6ff,transparent 70%);"></div>
-    <div class="absolute top-1/2 left-1/3 w-64 h-64 rounded-full opacity-20" style="background:radial-gradient(circle,#bfdbfe,transparent 70%);"></div>
+    <div class="absolute top-20 right-0 w-72 h-72 sm:w-[480px] sm:h-[480px] rounded-full opacity-30 sm:opacity-40" style="background:radial-gradient(circle,#dbeafe,transparent 70%);"></div>
+    <div class="absolute -bottom-20 -left-10 w-56 h-56 sm:w-72 sm:h-72 rounded-full opacity-20 sm:opacity-30" style="background:radial-gradient(circle,#eff6ff,transparent 70%);"></div>
+    <div class="hidden sm:block absolute top-1/2 left-1/3 w-64 h-64 rounded-full opacity-20" style="background:radial-gradient(circle,#bfdbfe,transparent 70%);"></div>
 
-    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 w-full">
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-12 sm:pb-16 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
             <!-- LEFT COPY -->
             <div>
                 <!-- Badge -->
-                <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-4 py-1.5 text-blue-600 text-xs font-semibold uppercase tracking-wider mb-6 reveal">
+                <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-3 sm:px-4 py-1.5 text-blue-600 text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-6 reveal">
                     <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                     Uganda's #1 Antenatal Care Platform
                 </div>
 
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-5 reveal" style="transition-delay:.1s;">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-5 reveal" style="transition-delay:.1s;">
                     Caring for You<br>and Your Baby<br>
                     <span class="text-blue-600">Every Step of the Way</span>
                 </h1>
 
-                <p class="text-gray-500 text-base md:text-lg leading-relaxed mb-8 max-w-lg reveal" style="transition-delay:.2s;">
+                <p class="text-gray-500 text-sm sm:text-base md:text-lg leading-relaxed mb-8 max-w-lg reveal" style="transition-delay:.2s;">
                     Book antenatal appointments, track your pregnancy progress, and get SMS reminders — all managed by UMDPC-licensed OB-GYN doctors across Uganda.
                 </p>
 
@@ -315,7 +316,7 @@
 ══════════════════════════════════════════ -->
 <section class="py-14 bg-white border-y border-gray-100" id="stats">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <div class="reveal d1">
                 <p class="text-4xl font-extrabold text-blue-600 stat-count" data-target="5000" data-suffix="+">0</p>
                 <p class="text-gray-500 mt-1 text-sm">Mothers Supported</p>
@@ -346,7 +347,7 @@
             <!-- Image side -->
             <div class="relative reveal-left">
                 <!-- Main circular frame -->
-                <div class="relative mx-auto w-80 h-80 lg:w-96 lg:h-96">
+                <div class="relative mx-auto w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
                     <div class="absolute inset-0 rounded-full border-8 border-blue-100"></div>
                     <div class="absolute inset-4 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center overflow-hidden">
                         <!-- Doctor illustration -->
@@ -375,7 +376,7 @@
                     </div>
                 </div>
                 <!-- Second smaller frame -->
-                <div class="absolute top-4 -left-4 lg:-left-10 w-32 h-32 rounded-2xl bg-blue-50 border-2 border-blue-100 flex items-center justify-center shadow-lg">
+                <div class="hidden sm:flex absolute top-4 -left-4 lg:-left-10 w-32 h-32 rounded-2xl bg-blue-50 border-2 border-blue-100 items-center justify-center shadow-lg">
                     <div class="text-center">
                         <svg class="w-10 h-10 text-blue-500 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                         <p class="text-blue-700 font-bold text-xs">UMDPC</p>
@@ -452,7 +453,7 @@
             </div>
 
             <!-- Right: Doctor image + consultation card -->
-            <div class="relative flex justify-center reveal-right">
+            <div class="relative flex flex-col items-center justify-center reveal-right">
                 <!-- Doctor circle -->
                 <div class="w-72 h-72 rounded-full overflow-hidden border-8 border-white shadow-2xl shadow-blue-200/50 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-end">
                     <svg viewBox="0 0 200 240" class="w-full h-full" fill="none">
@@ -470,7 +471,7 @@
                 </div>
 
                 <!-- Consultation info card -->
-                <div class="absolute -bottom-6 right-0 lg:-right-6 bg-white rounded-2xl shadow-2xl shadow-blue-200/40 p-5 w-60">
+                <div class="mt-4 sm:mt-0 sm:absolute sm:-bottom-6 sm:right-0 lg:-right-6 bg-white rounded-2xl shadow-2xl shadow-blue-200/40 p-5 w-full max-w-xs sm:w-60">
                     <p class="text-gray-800 font-bold text-sm mb-3">Don't Hesitate to Do a Consultation</p>
                     <div class="space-y-1.5 text-xs text-gray-500 mb-4">
                         <div class="flex justify-between"><span class="font-medium text-gray-700">Monday – Friday</span><span>8:00 – 5:00</span></div>
@@ -556,15 +557,15 @@
     <!-- Subtle blue decorative blobs -->
     <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full opacity-30" style="background:radial-gradient(circle,#dbeafe,transparent 70%);"></div>
     <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full opacity-20" style="background:radial-gradient(circle,#eff6ff,transparent 70%);"></div>
-    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center reveal">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center reveal">
         <span class="inline-block bg-blue-50 text-blue-600 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-5 border border-blue-100">Ready to Begin?</span>
-        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-5 leading-tight">Start Your MamaCare<br>Journey Today</h2>
-        <p class="text-gray-500 text-lg mb-10 max-w-xl mx-auto">Join thousands of mothers across Uganda who trust MamaCare for safe, managed antenatal care.</p>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-5 leading-tight">Start Your MamaCare<br>Journey Today</h2>
+        <p class="text-gray-500 text-base sm:text-lg mb-10 max-w-xl mx-auto">Join thousands of mothers across Uganda who trust MamaCare for safe, managed antenatal care.</p>
         <div class="flex flex-wrap justify-center gap-4">
-            <a href="{{ route('register') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl font-bold text-base shadow-lg shadow-blue-200 transition-all transform hover:scale-105">
+            <a href="{{ route('register') }}" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-10 py-4 rounded-xl font-bold text-base shadow-lg shadow-blue-200 transition-all transform hover:scale-105">
                 Register Now — It's Free
             </a>
-            <a href="{{ route('login') }}" class="border-2 border-blue-200 hover:border-blue-400 text-blue-600 hover:bg-blue-50 px-10 py-4 rounded-xl font-bold text-base transition-all">
+            <a href="{{ route('login') }}" class="w-full sm:w-auto border-2 border-blue-200 hover:border-blue-400 text-blue-600 hover:bg-blue-50 px-6 sm:px-10 py-4 rounded-xl font-bold text-base transition-all">
                 Sign In to Your Account
             </a>
         </div>
