@@ -8,8 +8,8 @@
     <!-- Appointment Info -->
     <div class="lg:col-span-2 space-y-6">
         <!-- Details Card -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-            <div class="flex items-center justify-between mb-6">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
                 <h2 class="font-semibold text-gray-800 text-lg">Appointment #{{ $appointment->id }}</h2>
                 <span class="inline-block px-3 py-1.5 rounded-full text-sm font-semibold
                     {{ $appointment->status === 'completed' ? 'bg-green-100 text-green-700' :
@@ -18,7 +18,7 @@
                     {{ ucfirst($appointment->status) }}
                 </span>
             </div>
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                     <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider mb-1">Patient</p>
                     <p class="font-semibold text-gray-800">{{ $appointment->patient->user->name }}</p>

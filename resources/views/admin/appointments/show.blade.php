@@ -5,8 +5,8 @@
 
 @section('content')
 <div class="max-w-2xl">
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <div class="grid grid-cols-2 gap-6">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
                 <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Patient</p>
                 <p class="font-semibold text-gray-800">{{ $appointment->patient->user->name }}</p>
@@ -54,7 +54,7 @@
         </div>
         @endif
 
-        <div class="mt-6 pt-6 border-t border-gray-100 flex items-center justify-between text-sm text-gray-400">
+        <div class="mt-6 pt-6 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm text-gray-400">
             <span>SMS Reminder: {{ $appointment->reminder_sent ? 'Sent' : 'Not sent' }}</span>
             <span>Created: {{ $appointment->created_at->format('M j, Y') }}</span>
         </div>

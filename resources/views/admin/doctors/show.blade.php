@@ -64,7 +64,7 @@
 
     <!-- Stats & Appointments -->
     <div class="lg:col-span-2 space-y-6">
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 text-center">
                 <p class="text-3xl font-bold text-teal-600">{{ $patientsCount }}</p>
                 <p class="text-gray-500 mt-1">Total Patients</p>
@@ -81,17 +81,17 @@
             </div>
             <div class="divide-y divide-gray-50">
                 @forelse($doctor->appointments->take(8) as $appt)
-                <div class="p-4 flex items-center justify-between hover:bg-gray-50">
-                    <div class="flex items-center space-x-3">
+                <div class="p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 hover:bg-gray-50">
+                    <div class="flex items-center space-x-3 min-w-0">
                         <div class="w-9 h-9 rounded-full bg-pink-100 flex items-center justify-center text-pink-700 font-semibold text-sm">
                             {{ strtoupper(substr($appt->patient->user->name, 0, 1)) }}
                         </div>
-                        <div>
-                            <p class="font-medium text-gray-800 text-sm">{{ $appt->patient->user->name }}</p>
+                        <div class="min-w-0">
+                            <p class="font-medium text-gray-800 text-sm truncate">{{ $appt->patient->user->name }}</p>
                             <p class="text-gray-400 text-xs">{{ $appt->type_display }}</p>
                         </div>
                     </div>
-                    <div class="text-right">
+                    <div class="sm:text-right">
                         <p class="text-sm text-gray-600">{{ $appt->appointment_date->format('M j, Y') }}</p>
                         <span class="inline-block px-2 py-0.5 rounded-full text-xs font-medium
                             {{ $appt->status === 'completed' ? 'bg-green-100 text-green-700' :

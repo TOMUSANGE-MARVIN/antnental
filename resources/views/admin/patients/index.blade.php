@@ -7,7 +7,7 @@
 <!-- Add New Patient Button -->
 <div class="mb-6">
     <a href="{{ route('admin.patients.create') }}" 
-       class="inline-flex items-center px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg transition">
+       class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg transition">
         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
         </svg>
@@ -16,10 +16,11 @@
 </div>
 
 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-    <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+    <div class="p-4 sm:p-6 border-b border-gray-100 flex items-center justify-between">
         <h2 class="font-semibold text-gray-700">{{ $patients->total() }} patients registered</h2>
     </div>
-    <table class="w-full">
+    <div class="overflow-x-auto">
+    <table class="min-w-[860px] w-full">
         <thead class="bg-gray-50 border-b border-gray-100">
             <tr>
                 <th class="text-left px-6 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Patient</th>
@@ -80,6 +81,7 @@
             @endforelse
         </tbody>
     </table>
+    </div>
     @if($patients->hasPages())
     <div class="px-6 py-4 border-t border-gray-100">
         {{ $patients->links() }}

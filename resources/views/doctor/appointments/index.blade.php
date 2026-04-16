@@ -5,10 +5,11 @@
 
 @section('content')
 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-    <div class="p-5 border-b border-gray-100">
+    <div class="p-4 sm:p-5 border-b border-gray-100">
         <p class="text-gray-500">{{ $appointments->total() }} appointments</p>
     </div>
-    <table class="w-full">
+    <div class="overflow-x-auto">
+    <table class="min-w-[820px] w-full">
         <thead class="bg-gray-50 border-b border-gray-100">
             <tr>
                 <th class="text-left px-6 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Patient</th>
@@ -59,6 +60,7 @@
             @endforelse
         </tbody>
     </table>
+    </div>
     @if($appointments->hasPages())
     <div class="px-6 py-4 border-t border-gray-100">
         {{ $appointments->links() }}

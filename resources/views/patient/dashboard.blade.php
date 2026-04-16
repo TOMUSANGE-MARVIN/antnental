@@ -60,7 +60,7 @@
                 <p class="text-teal-100 text-sm mt-2">Estimated due date: {{ $patient->edd_date->format('M j, Y') }}</p>
             @endif
         </div>
-        <div class="bg-white/20 rounded-2xl px-4 py-3 text-center min-w-[180px]">
+        <div class="bg-white/20 rounded-2xl px-4 py-3 text-center w-full sm:w-auto sm:min-w-[180px]">
             <p class="text-xs uppercase tracking-wider text-teal-100">Current Week</p>
             <p class="text-3xl font-bold">{{ $patient->weeks_pregnant ?? 0 }}</p>
             @if($patient->days_until_edd !== null)
@@ -79,12 +79,12 @@
     </div>
 </div>
 @else
-<div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-6 flex items-start justify-between gap-4">
+<div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
     <div>
         <p class="font-semibold text-amber-800">Complete your pregnancy profile</p>
         <p class="text-sm text-amber-700 mt-1">Add your LMP and expected due date so your dashboard can show accurate pregnancy progress.</p>
     </div>
-    <a href="{{ route('patient.profile') }}" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap">Update Profile</a>
+    <a href="{{ route('patient.profile') }}" class="w-full sm:w-auto text-center bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap">Update Profile</a>
 </div>
 @endif
 
@@ -120,7 +120,7 @@
                 {{ $nextAppointment->appointment_date->format('l, F j, Y') }} at {{ \Carbon\Carbon::parse($nextAppointment->appointment_time)->format('g:i A') }}
             </p>
         </div>
-        <div class="text-right">
+        <div class="sm:text-right">
             <span class="inline-block px-3 py-1.5 rounded-full text-sm font-semibold {{ $nextAppointment->status === 'confirmed' ? 'bg-blue-100 text-blue-700' : 'bg-yellow-100 text-yellow-700' }}">
                 {{ ucfirst($nextAppointment->status) }}
             </span>
@@ -129,12 +129,12 @@
     </div>
 </div>
 @else
-<div class="bg-pink-50 border border-pink-100 rounded-2xl p-5 mb-6 flex items-center justify-between gap-4">
+<div class="bg-pink-50 border border-pink-100 rounded-2xl p-5 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
     <div>
         <p class="font-semibold text-pink-700">No upcoming appointments</p>
         <p class="text-pink-500 text-sm mt-1">Book your next visit and keep your care plan on track.</p>
     </div>
-    <a href="{{ route('patient.appointments.create') }}" class="bg-pink-500 hover:bg-pink-600 text-white px-5 py-2.5 rounded-xl font-medium transition text-sm whitespace-nowrap">
+    <a href="{{ route('patient.appointments.create') }}" class="w-full sm:w-auto text-center bg-pink-500 hover:bg-pink-600 text-white px-5 py-2.5 rounded-xl font-medium transition text-sm whitespace-nowrap">
         Book Now
     </a>
 </div>
@@ -148,7 +148,7 @@
         </div>
         <div class="divide-y divide-gray-50">
             @forelse($upcomingAppointments as $appt)
-            <div class="p-4 flex items-center justify-between">
+            <div class="p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                 <div>
                     <p class="font-medium text-gray-800 text-sm">Dr. {{ $appt->doctor->user->name }}</p>
                     <p class="text-gray-400 text-xs">{{ $appt->appointment_date->format('M j, Y') }} · {{ \Carbon\Carbon::parse($appt->appointment_time)->format('g:i A') }}</p>
@@ -170,7 +170,7 @@
         </div>
         <div class="divide-y divide-gray-50">
             @forelse($pastAppointments as $appt)
-            <div class="p-4 flex items-center justify-between">
+            <div class="p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                 <div>
                     <p class="font-medium text-gray-800 text-sm">Dr. {{ $appt->doctor->user->name }}</p>
                     <p class="text-gray-400 text-xs">{{ $appt->appointment_date->format('M j, Y') }} · {{ $appt->type_display }}</p>

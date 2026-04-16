@@ -103,13 +103,38 @@
 
         <!-- CTA -->
         <div class="flex items-center gap-3">
+            <button id="mobile-menu-toggle" type="button" class="md:hidden inline-flex items-center justify-center rounded-lg border border-gray-200 p-2 text-gray-600 hover:bg-gray-50">
+                <svg id="mobile-menu-open-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg id="mobile-menu-close-icon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
             <a href="{{ route('login') }}" class="hidden md:inline text-gray-600 hover:text-blue-600 text-sm font-medium transition" id="nav-signin">Sign In</a>
-            <a href="{{ route('register') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-semibold text-sm shadow-lg shadow-blue-500/30 transition">
+            <a href="{{ route('register') }}" class="hidden sm:inline-flex bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-semibold text-sm shadow-lg shadow-blue-500/30 transition">
                 Book Appointment
             </a>
         </div>
     </div>
 </nav>
+
+<div id="mobile-menu" class="hidden fixed top-[72px] inset-x-0 z-40 md:hidden bg-white border-t border-gray-100 shadow-lg">
+    <div class="px-4 py-4 space-y-3 text-sm font-medium">
+        <a href="{{ route('landing') }}" class="block text-gray-700 hover:text-blue-600">Home</a>
+        <a href="#features" class="block text-gray-700 hover:text-blue-600">Services</a>
+        <a href="#about" class="block text-gray-700 hover:text-blue-600">About Us</a>
+        <a href="#why" class="block text-gray-700 hover:text-blue-600">Why Us</a>
+        <a href="#testimonials" class="block text-gray-700 hover:text-blue-600">Reviews</a>
+        <a href="#contact" class="block text-gray-700 hover:text-blue-600">Contact</a>
+        <a href="{{ route('register') }}" class="block bg-blue-600 hover:bg-blue-700 text-white text-center px-4 py-2.5 rounded-lg font-semibold">
+            Book Appointment
+        </a>
+        <div class="pt-2 border-t border-gray-100">
+            <a href="{{ route('login') }}" class="block text-gray-700 hover:text-blue-600">Sign In</a>
+        </div>
+    </div>
+</div>
 
 <!-- ══════════════════════════════════════════
      HERO
@@ -591,6 +616,41 @@ const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     navbar.classList.toggle('shadow-md', window.scrollY > 40);
 }, { passive: true });
+
+// ── Mobile menu toggle ──
+const menuToggle = document.getElementById('mobile-menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+const openIcon = document.getElementById('mobile-menu-open-icon');
+const closeIcon = document.getElementById('mobile-menu-close-icon');
+
+if (menuToggle && mobileMenu) {
+    const toggleMenu = () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden');
+        if (openIcon && closeIcon) {
+            openIcon.classList.toggle('hidden', !isHidden);
+            closeIcon.classList.toggle('hidden', isHidden);
+        }
+    };
+
+    menuToggle.addEventListener('click', toggleMenu);
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            openIcon?.classList.remove('hidden');
+            closeIcon?.classList.add('hidden');
+        });
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+            mobileMenu.classList.add('hidden');
+            openIcon?.classList.remove('hidden');
+            closeIcon?.classList.add('hidden');
+        }
+    });
+}
 
 // ── Intersection observer for scroll reveals ──
 const revealAll = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');

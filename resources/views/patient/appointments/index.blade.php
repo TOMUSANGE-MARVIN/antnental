@@ -4,13 +4,13 @@
 @section('header', 'My Appointments')
 
 @section('content')
-<div class="flex items-center justify-between mb-6">
+<div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
     <p class="text-gray-500">{{ $appointments->total() }} total appointments</p>
     @php
         $hasFirstVisit = $appointments->where('type', 'first_visit')->count() > 0;
     @endphp
     @if(!$hasFirstVisit)
-    <a href="{{ route('patient.appointments.create') }}" class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-xl font-medium transition flex items-center space-x-2">
+    <a href="{{ route('patient.appointments.create') }}" class="w-full sm:w-auto bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-xl font-medium transition flex items-center justify-center space-x-2">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
         <span>Book Appointment</span>
     </a>
@@ -20,17 +20,17 @@
 <div class="space-y-4">
     @forelse($appointments as $appt)
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-        <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-4">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-center space-x-4 min-w-0">
                 <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center text-teal-700 font-bold text-lg">
                     {{ strtoupper(substr($appt->doctor->user->name, 0, 1)) }}
                 </div>
-                <div>
-                    <p class="font-semibold text-gray-800">Dr. {{ $appt->doctor->user->name }}</p>
+                <div class="min-w-0">
+                    <p class="font-semibold text-gray-800 truncate">Dr. {{ $appt->doctor->user->name }}</p>
                     <p class="text-gray-500 text-sm">{{ $appt->doctor->specialization }}</p>
                 </div>
             </div>
-            <div class="text-right">
+            <div class="sm:text-right">
                 <span class="inline-block px-3 py-1.5 rounded-full text-sm font-semibold
                     {{ $appt->status === 'completed' ? 'bg-green-100 text-green-700' :
                        ($appt->status === 'confirmed' ? 'bg-blue-100 text-blue-700' :
@@ -39,7 +39,7 @@
                 </span>
             </div>
         </div>
-        <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
             <div>
                 <p class="text-gray-400 text-xs">Date</p>
                 <p class="font-medium text-gray-700">{{ $appt->appointment_date->format('M j, Y') }}</p>
