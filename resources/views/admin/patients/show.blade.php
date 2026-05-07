@@ -87,12 +87,13 @@
             <div class="divide-y divide-gray-50">
                 @forelse($patient->appointments as $appt)
                 <div class="p-4 flex items-center justify-between">
+                    @php $doctorName = $appt->doctor?->user?->name; @endphp
                     <div class="flex items-center space-x-3">
                         <div class="w-9 h-9 rounded-full bg-teal-100 flex items-center justify-center text-teal-700 font-semibold text-sm">
-                            {{ strtoupper(substr($appt->doctor->user->name, 0, 1)) }}
+                            {{ strtoupper(substr($doctorName ?? 'A', 0, 1)) }}
                         </div>
                         <div>
-                            <p class="font-medium text-gray-800 text-sm">Dr. {{ $appt->doctor->user->name }}</p>
+                            <p class="font-medium text-gray-800 text-sm">{{ $doctorName ? 'Dr. ' . $doctorName : 'Awaiting doctor assignment' }}</p>
                             <p class="text-gray-400 text-xs">{{ $appt->type_display }} · {{ $appt->appointment_date->format('M j, Y') }} {{ \Carbon\Carbon::parse($appt->appointment_time)->format('g:i A') }}</p>
                         </div>
                     </div>

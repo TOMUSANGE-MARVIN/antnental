@@ -32,6 +32,13 @@
 
         /* ── Hero video ── */
         #hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+        .hero-glass {
+            background: rgba(15, 23, 42, 0.38);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+        }
 
         /* ── Floating doctor blob ── */
         .blob-bg {
@@ -140,135 +147,54 @@
 <!-- ══════════════════════════════════════════
      HERO
 ══════════════════════════════════════════ -->
-<section class="relative min-h-screen flex items-center overflow-hidden bg-white">
-
-    <!-- Subtle decorative circles -->
-    <div class="absolute top-20 right-0 w-72 h-72 sm:w-[480px] sm:h-[480px] rounded-full opacity-30 sm:opacity-40" style="background:radial-gradient(circle,#dbeafe,transparent 70%);"></div>
-    <div class="absolute -bottom-20 -left-10 w-56 h-56 sm:w-72 sm:h-72 rounded-full opacity-20 sm:opacity-30" style="background:radial-gradient(circle,#eff6ff,transparent 70%);"></div>
-    <div class="hidden sm:block absolute top-1/2 left-1/3 w-64 h-64 rounded-full opacity-20" style="background:radial-gradient(circle,#bfdbfe,transparent 70%);"></div>
+<section class="relative min-h-screen flex items-center overflow-hidden bg-slate-900">
+    <video id="hero-video" autoplay muted loop playsinline>
+        <source src="https://cdn.coverr.co/videos/coverr-hands-holding-a-pregnant-belly-1579/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 z-10 bg-slate-950/45"></div>
 
     <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-12 sm:pb-16 w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-            <!-- LEFT COPY -->
-            <div>
-                <!-- Badge -->
-                <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-3 sm:px-4 py-1.5 text-blue-600 text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-6 reveal">
-                    <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-                    Uganda's #1 Antenatal Care Platform
-                </div>
-
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-5 reveal" style="transition-delay:.1s;">
-                    Caring for You<br>and Your Baby<br>
-                    <span class="text-blue-600">Every Step of the Way</span>
-                </h1>
-
-                <p class="text-gray-500 text-sm sm:text-base md:text-lg leading-relaxed mb-8 max-w-lg reveal" style="transition-delay:.2s;">
-                    Book antenatal appointments, track your pregnancy progress, and get SMS reminders — all managed by UMDPC-licensed OB-GYN doctors across Uganda.
-                </p>
-
-                <!-- Quick contact form -->
-                <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4 mb-8 reveal" style="transition-delay:.3s;">
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
-                        <input type="text" placeholder="Your Name"
-                               class="bg-white border border-gray-200 text-gray-700 placeholder-gray-400 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 w-full">
-                        <input type="tel" placeholder="Phone (+256…)"
-                               class="bg-white border border-gray-200 text-gray-700 placeholder-gray-400 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 w-full">
-                        <input type="date"
-                               class="bg-white border border-gray-200 text-gray-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 w-full">
-                    </div>
-                    <a href="{{ route('register') }}"
-                       class="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-lg transition shadow-lg shadow-blue-300/40">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                        Book Now
-                    </a>
-                </div>
-
-                <!-- Trust row -->
-                <div class="flex flex-wrap gap-5 text-gray-500 text-sm reveal" style="transition-delay:.4s;">
-                    <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Free to Register</span>
-                    <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>SMS Reminders</span>
-                    <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>UMDPC Doctors</span>
-                </div>
+        <div class="max-w-3xl hero-glass rounded-3xl p-6 sm:p-10 reveal">
+            <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 rounded-full px-3 sm:px-4 py-1.5 text-blue-100 text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-6">
+                <span class="w-2 h-2 bg-blue-300 rounded-full animate-pulse"></span>
+                Uganda's #1 Antenatal Care Platform
             </div>
 
-            <!-- RIGHT — illustrated doctor area -->
-            <div class="hidden lg:flex items-center justify-center relative reveal-right">
-                <!-- Blob shape -->
-                <div class="blob-bg">
-                    <div class="blob-shape"></div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-5 reveal" style="transition-delay:.1s;">
+                Caring for You<br>and Your Baby<br>
+                <span class="text-blue-200">Every Step of the Way</span>
+            </h1>
 
-                    <!-- Illustrated maternal figure (SVG) -->
-                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 420 480" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Body / coat -->
-                        <ellipse cx="210" cy="380" rx="90" ry="60" fill="#1d4ed8" opacity=".15"/>
-                        <rect x="155" y="230" width="110" height="170" rx="20" fill="#ffffff" opacity=".9"/>
-                        <!-- Stethoscope -->
-                        <path d="M185 270 Q175 310 185 330 Q195 350 210 340 Q225 330 220 310 Q215 290 210 280" stroke="#1d4ed8" stroke-width="4" fill="none" stroke-linecap="round"/>
-                        <circle cx="210" cy="280" r="8" fill="#2563eb"/>
-                        <!-- Collar / scrubs detail -->
-                        <path d="M190 230 L210 255 L230 230" fill="#dbeafe"/>
-                        <!-- Head -->
-                        <circle cx="210" cy="185" r="52" fill="#fde8d0"/>
-                        <!-- Hair -->
-                        <path d="M158 185 Q158 135 210 130 Q262 130 262 185 Q260 155 210 152 Q160 155 158 185Z" fill="#92400e"/>
-                        <!-- Headband -->
-                        <rect x="158" y="178" width="104" height="10" rx="5" fill="#2563eb" opacity=".7"/>
-                        <!-- Eyes -->
-                        <ellipse cx="195" cy="190" rx="5" ry="6" fill="#1e293b"/>
-                        <ellipse cx="225" cy="190" rx="5" ry="6" fill="#1e293b"/>
-                        <circle cx="197" cy="188" r="2" fill="white"/>
-                        <circle cx="227" cy="188" r="2" fill="white"/>
-                        <!-- Smile -->
-                        <path d="M198 208 Q210 218 222 208" stroke="#c2410c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                        <!-- Arms -->
-                        <rect x="110" y="240" width="48" height="22" rx="11" fill="#ffffff" opacity=".9" transform="rotate(-25 110 240)"/>
-                        <rect x="262" y="240" width="48" height="22" rx="11" fill="#ffffff" opacity=".9" transform="rotate(25 310 240)"/>
-                        <!-- Clipboard -->
-                        <rect x="220" y="280" width="55" height="70" rx="6" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
-                        <rect x="228" y="275" width="40" height="10" rx="4" fill="#2563eb"/>
-                        <line x1="228" y1="300" x2="265" y2="300" stroke="#93c5fd" stroke-width="2"/>
-                        <line x1="228" y1="310" x2="265" y2="310" stroke="#93c5fd" stroke-width="2"/>
-                        <line x1="228" y1="320" x2="255" y2="320" stroke="#93c5fd" stroke-width="2"/>
-                        <!-- Pregnant belly hint on clipboard -->
-                        <circle cx="246" cy="340" r="12" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5"/>
-                        <path d="M240 340 Q246 333 252 340" stroke="#2563eb" stroke-width="1.5" fill="none"/>
-                    </svg>
-                </div>
+            <p class="text-blue-100/90 text-sm sm:text-base md:text-lg leading-relaxed mb-8 max-w-2xl reveal" style="transition-delay:.2s;">
+                Book antenatal appointments, track your pregnancy progress, and get SMS reminders — all managed by UMDPC-licensed OB-GYN doctors across Uganda.
+            </p>
 
-                <!-- Floating stats card -->
-                <div class="absolute -bottom-4 -left-6 bg-white rounded-2xl shadow-2xl shadow-blue-200/60 px-5 py-4 float-card z-10">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
-                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        </div>
-                        <div>
-                            <p class="text-2xl font-extrabold text-blue-700">5,000+</p>
-                            <p class="text-xs text-gray-500">Mothers Supported</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-1 mt-2">
-                        @for($i=0;$i<5;$i++)<svg class="w-3.5 h-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>@endfor
-                        <span class="text-xs text-gray-400 ml-1">4.9 rating</span>
-                    </div>
+            <div class="bg-white/10 border border-white/20 rounded-2xl p-4 mb-8 reveal" style="transition-delay:.3s;">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
+                    <input type="text" placeholder="Your Name"
+                           class="bg-white/80 border border-white/60 text-gray-700 placeholder-gray-500 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 w-full">
+                    <input type="tel" placeholder="Phone (+256…)"
+                           class="bg-white/80 border border-white/60 text-gray-700 placeholder-gray-500 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 w-full">
+                    <input type="date"
+                           class="bg-white/80 border border-white/60 text-gray-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 w-full">
                 </div>
+                <a href="{{ route('register') }}"
+                   class="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-lg transition shadow-lg shadow-blue-900/40">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Book Now
+                </a>
+            </div>
 
-                <!-- Floating appointment card -->
-                <div class="absolute top-6 -right-6 bg-white rounded-2xl shadow-xl shadow-blue-100/60 px-4 py-3 w-52 z-10" style="animation: float 5s ease-in-out 1.5s infinite;">
-                    <p class="text-blue-400 text-[10px] font-bold uppercase tracking-wider mb-1">Next Appointment</p>
-                    <p class="text-gray-800 font-semibold text-sm">Dr. Nakato Grace</p>
-                    <p class="text-gray-400 text-xs">Tomorrow · 10:30 AM</p>
-                    <div class="mt-2 bg-blue-50 rounded-lg px-2 py-1 flex items-center gap-1.5">
-                        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span class="text-green-600 text-xs font-medium">Confirmed</span>
-                    </div>
-                </div>
+            <div class="flex flex-wrap gap-5 text-blue-100 text-sm reveal" style="transition-delay:.4s;">
+                <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-blue-200" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Free to Register</span>
+                <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-blue-200" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>SMS Reminders</span>
+                <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-blue-200" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>UMDPC Doctors</span>
             </div>
         </div>
     </div>
 
     <!-- Scroll indicator -->
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 bounce-s text-gray-400 flex flex-col items-center gap-1">
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 bounce-s text-white/80 flex flex-col items-center gap-1">
         <span class="text-[10px] tracking-widest uppercase">Scroll</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </div>

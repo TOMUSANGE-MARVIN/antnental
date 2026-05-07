@@ -9,10 +9,11 @@
         <p class="text-gray-500">{{ $appointments->total() }} total appointments</p>
     </div>
     <div class="overflow-x-auto">
-    <table class="min-w-[980px] w-full">
+    <table class="min-w-[1100px] w-full">
         <thead class="bg-gray-50 border-b border-gray-100">
             <tr>
                 <th class="text-left px-6 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Patient</th>
+                <th class="text-left px-6 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Reason</th>
                 <th class="text-left px-6 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Doctor</th>
                 <th class="text-left px-6 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Date & Time</th>
                 <th class="text-left px-6 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Type</th>
@@ -23,6 +24,12 @@
         </thead>
         <tbody class="divide-y divide-gray-50">
             @forelse($appointments as $appt)
+            @php
+                $doctorName = $appt->doctor?->user?->name;
+                $reasonText = $appt->visit_reason === 'other' && $appt->other_reason
+                    ? $appt->other_reason
+                    : $appt->visit_reason_display;
+            @endphp
             <tr class="hover:bg-gray-50">
                 <td class="px-6 py-4">
                     <a href="{{ route('admin.patients.show', $appt->patient) }}" class="flex items-center space-x-2 group">
@@ -32,7 +39,10 @@
                         <span class="text-sm font-medium text-gray-700 group-hover:text-teal-600">{{ $appt->patient->user->name }}</span>
                     </a>
                 </td>
-                <td class="px-6 py-4 text-sm text-gray-600">Dr. {{ $appt->doctor->user->name }}</td>
+                <td class="px-6 py-4 text-sm text-gray-600">{{ $reasonText }}</td>
+                <td class="px-6 py-4 text-sm text-gray-600">
+                    {{ $doctorName ? 'Dr. ' . $doctorName : 'Unassigned (admin action needed)' }}
+                </td>
                 <td class="px-6 py-4 text-sm text-gray-600">
                     {{ $appt->appointment_date->format('M j, Y') }}<br>
                     <span class="text-gray-400 text-xs">{{ \Carbon\Carbon::parse($appt->appointment_time)->format('g:i A') }}</span>
@@ -59,7 +69,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="6" class="px-6 py-12 text-center text-gray-400">No appointments found.</td>
+                <td colspan="8" class="px-6 py-12 text-center text-gray-400">No appointments found.</td>
             </tr>
             @endforelse
         </tbody>

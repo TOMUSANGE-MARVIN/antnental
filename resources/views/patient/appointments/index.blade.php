@@ -6,28 +6,35 @@
 @section('content')
 <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
     <p class="text-gray-500">{{ $appointments->total() }} total appointments</p>
-    @php
-        $hasFirstVisit = $appointments->where('type', 'first_visit')->count() > 0;
-    @endphp
-    @if(!$hasFirstVisit)
     <a href="{{ route('patient.appointments.create') }}" class="w-full sm:w-auto bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-xl font-medium transition flex items-center justify-center space-x-2">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
         <span>Book Appointment</span>
     </a>
-    @endif
 </div>
 
 <div class="space-y-4">
     @forelse($appointments as $appt)
+    @php
+        $doctorName = $appt->doctor?->user?->name;
+        $doctorSpecialization = $appt->doctor?->specialization;
+        $reasonText = $appt->visit_reason === 'other' && $appt->other_reason
+            ? $appt->other_reason
+            : $appt->visit_reason_display;
+        $canEdit = in_array($appt->status, ['pending', 'confirmed'], true) && !$appt->appointment_date->isPast();
+    @endphp
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div class="flex items-center space-x-4 min-w-0">
                 <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center text-teal-700 font-bold text-lg">
-                    {{ strtoupper(substr($appt->doctor->user->name, 0, 1)) }}
+                    {{ strtoupper(substr($doctorName ?? 'A', 0, 1)) }}
                 </div>
                 <div class="min-w-0">
-                    <p class="font-semibold text-gray-800 truncate">Dr. {{ $appt->doctor->user->name }}</p>
-                    <p class="text-gray-500 text-sm">{{ $appt->doctor->specialization }}</p>
+                    <p class="font-semibold text-gray-800 truncate">
+                        {{ $doctorName ? 'Dr. ' . $doctorName : 'Awaiting doctor assignment' }}
+                    </p>
+                    <p class="text-gray-500 text-sm">
+                        {{ $doctorSpecialization ?: 'Admin will assign the most appropriate doctor.' }}
+                    </p>
                 </div>
             </div>
             <div class="sm:text-right">
@@ -39,7 +46,7 @@
                 </span>
             </div>
         </div>
-        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 text-sm">
             <div>
                 <p class="text-gray-400 text-xs">Date</p>
                 <p class="font-medium text-gray-700">{{ $appt->appointment_date->format('M j, Y') }}</p>
@@ -51,6 +58,10 @@
             <div>
                 <p class="text-gray-400 text-xs">Type</p>
                 <p class="font-medium text-gray-700">{{ $appt->type_display }}</p>
+            </div>
+            <div>
+                <p class="text-gray-400 text-xs">Reason</p>
+                <p class="font-medium text-gray-700">{{ $reasonText }}</p>
             </div>
             <div>
                 <p class="text-gray-400 text-xs">SMS Reminder</p>
@@ -70,14 +81,21 @@
             <p class="text-blue-700">{{ $appt->doctor_notes }}</p>
         </div>
         @endif
+        @if($canEdit)
+        <div class="mt-3 pt-3 border-t border-gray-100">
+            <a href="{{ route('patient.appointments.edit', $appt) }}" class="text-sm font-medium text-teal-600 hover:text-teal-700">
+                Edit appointment
+            </a>
+        </div>
+        @endif
     </div>
     @empty
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-12 text-center">
         <svg class="w-16 h-16 mx-auto mb-4 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
         <p class="text-gray-400 font-medium text-lg mb-2">No appointments yet</p>
-        <p class="text-gray-400 text-sm mb-5">Book your first appointment to begin your antenatal care.</p>
+        <p class="text-gray-400 text-sm mb-5">Book your first appointment to begin your antenatal care. You can add more later.</p>
         <a href="{{ route('patient.appointments.create') }}" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-xl font-medium transition inline-block">
-            Book First Appointment
+            Book Appointment
         </a>
     </div>
     @endforelse

@@ -5,6 +5,13 @@
 
 @section('content')
 <div class="max-w-2xl">
+    @php
+        $doctorName = $appointment->doctor?->user?->name;
+        $doctorSpecialization = $appointment->doctor?->specialization;
+        $reasonText = $appointment->visit_reason === 'other' && $appointment->other_reason
+            ? $appointment->other_reason
+            : $appointment->visit_reason_display;
+    @endphp
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-8">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
@@ -14,8 +21,8 @@
             </div>
             <div>
                 <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Doctor</p>
-                <p class="font-semibold text-gray-800">Dr. {{ $appointment->doctor->user->name }}</p>
-                <p class="text-gray-500 text-sm">{{ $appointment->doctor->specialization }}</p>
+                <p class="font-semibold text-gray-800">{{ $doctorName ? 'Dr. ' . $doctorName : 'Not assigned yet' }}</p>
+                <p class="text-gray-500 text-sm">{{ $doctorSpecialization ?: 'Assign a doctor from the edit page.' }}</p>
             </div>
             <div>
                 <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Date</p>
@@ -28,6 +35,10 @@
             <div>
                 <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Type</p>
                 <span class="inline-block px-3 py-1 bg-purple-50 text-purple-700 rounded-lg text-sm font-medium">{{ $appointment->type_display }}</span>
+            </div>
+            <div>
+                <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Visit Reason</p>
+                <p class="font-semibold text-gray-800">{{ $reasonText }}</p>
             </div>
             <div>
                 <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Status</p>

@@ -161,7 +161,7 @@ class SmsNotification extends Model
     private static function generateAppointmentReminderMessage($appointment)
     {
         $patientName = $appointment->patient->user->name;
-        $doctorName = $appointment->doctor->user->name;
+        $doctorName = $appointment->doctor?->user?->name ?? 'your assigned doctor';
         $appointmentDate = $appointment->appointment_date;
         $appointmentTime = Carbon::parse($appointment->appointment_time)->format('g:i A');
         

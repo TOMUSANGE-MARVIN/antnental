@@ -49,5 +49,5 @@ Route::prefix('patient')->name('patient.')->middleware(['auth', 'role:patient'])
     Route::get('/dashboard', [Patient\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [Patient\ProfileController::class, 'edit'])->name('profile');
     Route::put('/profile', [Patient\ProfileController::class, 'update'])->name('profile.update');
-    Route::resource('appointments', Patient\AppointmentController::class)->only(['index', 'create', 'store']);
+    Route::resource('appointments', Patient\AppointmentController::class)->only(['index', 'create', 'store', 'edit', 'update']);
 });

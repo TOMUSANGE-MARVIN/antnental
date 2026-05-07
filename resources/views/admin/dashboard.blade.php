@@ -125,7 +125,9 @@
                     </div>
                     <div>
                         <p class="font-medium text-gray-800 text-sm">{{ $appt->patient->user->name }}</p>
-                        <p class="text-gray-500 text-xs">Dr. {{ $appt->doctor->user->name }}</p>
+                        <p class="text-gray-500 text-xs">
+                            {{ $appt->doctor?->user?->name ? 'Dr. ' . $appt->doctor->user->name : 'Doctor not assigned yet' }}
+                        </p>
                     </div>
                 </div>
                 <div class="text-right">

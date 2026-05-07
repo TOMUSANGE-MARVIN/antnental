@@ -110,12 +110,18 @@
 </div>
 
 @if($nextAppointment)
+@php
+    $nextDoctorName = $nextAppointment->doctor?->user?->name;
+    $nextDoctorSpecialization = $nextAppointment->doctor?->specialization;
+@endphp
 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 mb-6">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
             <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Next Appointment</p>
-            <h3 class="font-bold text-gray-800 text-lg">Dr. {{ $nextAppointment->doctor->user->name }}</h3>
-            <p class="text-gray-500">{{ $nextAppointment->doctor->specialization }}</p>
+            <h3 class="font-bold text-gray-800 text-lg">
+                {{ $nextDoctorName ? 'Dr. ' . $nextDoctorName : 'Awaiting doctor assignment' }}
+            </h3>
+            <p class="text-gray-500">{{ $nextDoctorSpecialization ?: 'Admin will assign the right doctor.' }}</p>
             <p class="text-teal-600 font-medium mt-1">
                 {{ $nextAppointment->appointment_date->format('l, F j, Y') }} at {{ \Carbon\Carbon::parse($nextAppointment->appointment_time)->format('g:i A') }}
             </p>
@@ -148,9 +154,10 @@
         </div>
         <div class="divide-y divide-gray-50">
             @forelse($upcomingAppointments as $appt)
+            @php $doctorName = $appt->doctor?->user?->name; @endphp
             <div class="p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                 <div>
-                    <p class="font-medium text-gray-800 text-sm">Dr. {{ $appt->doctor->user->name }}</p>
+                    <p class="font-medium text-gray-800 text-sm">{{ $doctorName ? 'Dr. ' . $doctorName : 'Awaiting doctor assignment' }}</p>
                     <p class="text-gray-400 text-xs">{{ $appt->appointment_date->format('M j, Y') }} · {{ \Carbon\Carbon::parse($appt->appointment_time)->format('g:i A') }}</p>
                 </div>
                 <span class="inline-block px-2.5 py-1 rounded-full text-xs font-medium {{ $appt->status === 'confirmed' ? 'bg-blue-100 text-blue-700' : 'bg-yellow-100 text-yellow-700' }}">
@@ -170,9 +177,10 @@
         </div>
         <div class="divide-y divide-gray-50">
             @forelse($pastAppointments as $appt)
+            @php $doctorName = $appt->doctor?->user?->name; @endphp
             <div class="p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                 <div>
-                    <p class="font-medium text-gray-800 text-sm">Dr. {{ $appt->doctor->user->name }}</p>
+                    <p class="font-medium text-gray-800 text-sm">{{ $doctorName ? 'Dr. ' . $doctorName : 'Awaiting doctor assignment' }}</p>
                     <p class="text-gray-400 text-xs">{{ $appt->appointment_date->format('M j, Y') }} · {{ $appt->type_display }}</p>
                 </div>
                 <span class="inline-block px-2.5 py-1 rounded-full text-xs font-medium {{ $appt->status === 'completed' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">

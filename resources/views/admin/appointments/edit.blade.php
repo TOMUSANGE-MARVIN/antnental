@@ -24,6 +24,18 @@
                 <p class="text-sm text-gray-400">Patient · Appointment #{{ $appointment->id }}</p>
             </div>
         </div>
+        @php
+            $reasonText = $appointment->visit_reason === 'other' && $appointment->other_reason
+                ? $appointment->other_reason
+                : $appointment->visit_reason_display;
+        @endphp
+        <div class="mb-6 bg-indigo-50 border border-indigo-100 rounded-xl p-4">
+            <p class="text-xs font-semibold text-indigo-500 uppercase tracking-wider mb-1">Visit Reason</p>
+            <p class="text-sm font-medium text-indigo-900">{{ $reasonText }}</p>
+            @if($appointment->visit_reason === 'other')
+                <p class="mt-1 text-xs text-indigo-600">This request came from "Other", so doctor assignment is required now.</p>
+            @endif
+        </div>
 
         <form action="{{ route('admin.appointments.update', $appointment) }}" method="POST" class="space-y-5">
             @csrf
@@ -32,13 +44,15 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="md:col-span-2">
                     <label class="block text-sm font-medium text-gray-700 mb-1.5">Assigned Doctor *</label>
-                    <select name="doctor_id" class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <select name="doctor_id" required class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Select doctor...</option>
                         @foreach($doctors as $doc)
                             <option value="{{ $doc->id }}" {{ old('doctor_id', $appointment->doctor_id) == $doc->id ? 'selected' : '' }}>
                                 Dr. {{ $doc->user->name }} — {{ $doc->specialization }}
                             </option>
                         @endforeach
                     </select>
+                    @error('doctor_id') <p class="mt-1 text-red-500 text-sm">{{ $message }}</p> @enderror
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1.5">Date *</label>
