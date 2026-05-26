@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'My Account') - MamaCare</title>
+    <title>@yield('title', 'My Account') - AR-ACS</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 font-sans antialiased overflow-x-hidden">
@@ -16,7 +16,7 @@
                     <svg class="w-8 h-8 text-pink-300" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
                     </svg>
-                    <span class="text-xl font-bold text-white">MamaCare</span>
+                    <span class="text-xl font-bold text-white">AR-ACS</span>
                 </a>
                 <button id="sidebar-close" type="button" class="lg:hidden text-teal-200 hover:text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

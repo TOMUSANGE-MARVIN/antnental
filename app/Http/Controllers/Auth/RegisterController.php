@@ -60,6 +60,6 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('patient.dashboard')->with('success', 'Welcome to MamaCare! Your account has been created successfully.');
+        return redirect()->route('patient.dashboard')->with('success', 'Welcome to AR-ACS! Your account has been created successfully.');
     }
 }
