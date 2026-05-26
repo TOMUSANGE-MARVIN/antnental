@@ -246,7 +246,7 @@ document.getElementById('name').addEventListener('blur', function() {
     const emailInput = document.getElementById('email');
     if (!emailInput.value && this.value) {
         const nameParts = this.value.toLowerCase().split(' ');
-        const suggestedEmail = nameParts.join('.') + '@mamacare.com';
+        const suggestedEmail = nameParts.join('.') + '@ar-acs.com';
         emailInput.placeholder = suggestedEmail + ' (suggested)';
     }
 });

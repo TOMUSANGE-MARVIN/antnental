@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MamaCare Uganda — Antenatal Care Management</title>
+    <title>AR-ACS Uganda — Antenatal Care Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
@@ -96,7 +96,7 @@
                     <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
                 </svg>
             </div>
-            <span class="text-lg sm:text-xl font-extrabold text-blue-700 truncate" id="logo-text">MamaCare</span>
+            <span class="text-lg sm:text-xl font-extrabold text-blue-700 truncate" id="logo-text">AR-ACS</span>
         </a>
 
         <!-- Nav links (desktop) -->
@@ -230,7 +230,7 @@
                 </div>
                 <div>
                     <h3 class="font-bold text-gray-900 text-base mb-1">Satisfactory Service</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">98% of our mothers rate MamaCare 5 stars. Your comfort and baby's health are our top priority.</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">98% of our mothers rate AR-ACS 5 stars. Your comfort and baby's health are our top priority.</p>
                 </div>
             </div>
         </div>
@@ -318,7 +318,7 @@
                     The Best Antenatal Clinic<br>That You Can Trust
                 </h2>
                 <p class="text-gray-500 leading-relaxed mb-6">
-                    MamaCare Uganda connects expectant mothers with experienced, UMDPC-licensed obstetricians and gynaecologists. From your first visit to delivery, we manage every aspect of your antenatal care through a simple, digital platform.
+                    AR-ACS Uganda connects expectant mothers with experienced, UMDPC-licensed obstetricians and gynaecologists. From your first visit to delivery, we manage every aspect of your antenatal care through a simple, digital platform.
                 </p>
                 <ul class="space-y-3 mb-8">
                     @foreach(['Modern Digital Records — LMP, EDD, blood group stored securely','Easy Online Appointment — Book from your phone in under 2 minutes','Comfortable & Confidential — Your health data stays private','Always Monitored — Doctor tracks your pregnancy week by week'] as $item)
@@ -456,8 +456,8 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
             @foreach([
-                ['N','Nakamya Harriet','Mummy wa baana babiri · Kampala','MamaCare yatuwa obulamu. Emindwa mu foni yange ennaku gyonna yambulirizanga obutabeera. Dr. Nakato ye omuganga omulungi nnyo — akola bulungi nnyo mu kufaayo abasajja ababba.','blue'],
-                ['A','Adong Patience','First-time mother · Gulu','I tracked my EDD every single day and always knew which trimester I was in. The SMS reminder saved me from missing my 32-week check-up. I strongly recommend MamaCare to every pregnant woman in Uganda.','pink'],
+                ['N','Nakamya Harriet','Mummy wa baana babiri · Kampala','AR-ACS yatuwa obulamu. Emindwa mu foni yange ennaku gyonna yambulirizanga obutabeera. Dr. Nakato ye omuganga omulungi nnyo — akola bulungi nnyo mu kufaayo abasajja ababba.','blue'],
+                ['A','Adong Patience','First-time mother · Gulu','I tracked my EDD every single day and always knew which trimester I was in. The SMS reminder saved me from missing my 32-week check-up. I strongly recommend AR-ACS to every pregnant woman in Uganda.','pink'],
                 ['N','Nakirya Josephine','Mother of twins · Entebbe','Booking took less than 2 minutes on my phone. Dr. Kiggundu scheduled all my follow-ups automatically after each visit. This system is truly a blessing for mothers in Uganda.','purple'],
             ] as [$initial,$name,$meta,$quote,$color])
             <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 reveal feat-card">
@@ -485,8 +485,8 @@
     <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full opacity-20" style="background:radial-gradient(circle,#eff6ff,transparent 70%);"></div>
     <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center reveal">
         <span class="inline-block bg-blue-50 text-blue-600 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-5 border border-blue-100">Ready to Begin?</span>
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-5 leading-tight">Start Your MamaCare<br>Journey Today</h2>
-        <p class="text-gray-500 text-base sm:text-lg mb-10 max-w-xl mx-auto">Join thousands of mothers across Uganda who trust MamaCare for safe, managed antenatal care.</p>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-5 leading-tight">Start Your AR-ACS<br>Journey Today</h2>
+        <p class="text-gray-500 text-base sm:text-lg mb-10 max-w-xl mx-auto">Join thousands of mothers across Uganda who trust AR-ACS for safe, managed antenatal care.</p>
         <div class="flex flex-wrap justify-center gap-4">
             <a href="{{ route('register') }}" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-10 py-4 rounded-xl font-bold text-base shadow-lg shadow-blue-200 transition-all transform hover:scale-105">
                 Register Now — It's Free
@@ -509,7 +509,7 @@
                     <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                         <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
                     </div>
-                    <span class="text-xl font-bold text-white">MamaCare Uganda</span>
+                    <span class="text-xl font-bold text-white">AR-ACS Uganda</span>
                 </div>
                 <p class="text-sm leading-relaxed">Comprehensive antenatal care management platform dedicated to supporting mothers through every step of pregnancy across Uganda.</p>
             </div>
@@ -529,7 +529,7 @@
             </div>
         </div>
         <div class="border-t border-gray-800 pt-8 text-center text-sm">
-            <p>&copy; {{ date('Y') }} MamaCare Uganda. All rights reserved. Built with care for mothers everywhere.</p>
+            <p>&copy; {{ date('Y') }} AR-ACS Uganda. All rights reserved. Built with care for mothers everywhere.</p>
         </div>
     </div>
 </footer>

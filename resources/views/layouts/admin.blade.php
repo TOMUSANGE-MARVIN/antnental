@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin') - MamaCare</title>
+    <title>@yield('title', 'Admin') - AR-ACS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -17,7 +17,7 @@
                     <svg class="w-8 h-8 text-teal-300" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
                     </svg>
-                    <span class="text-xl font-bold text-white">MamaCare</span>
+                    <span class="text-xl font-bold text-white">AR-ACS</span>
                 </a>
                 <button id="sidebar-close" type="button" class="lg:hidden text-teal-200 hover:text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
